@@ -1,11 +1,18 @@
 FROM python:slim
 
-WORKDIR /home/saundersp/Variational_Auto_Encoder
+RUN adduser --disabled-password vae
 
-COPY . .
+USER vae
 
-RUN pip install -r requirements.txt
+WORKDIR /home/vae
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY *.py *.ipynb ./
 
 EXPOSE 8888
 
-CMD ["/usr/local/bin/jupyter", "lab"]
+ENTRYPOINT ["/home/vae/.local/bin/jupyter", "lab"]
+CMD ["--ip=0.0.0.0"]
