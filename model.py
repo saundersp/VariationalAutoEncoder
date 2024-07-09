@@ -1,6 +1,6 @@
 from layers import Conv2d, Conv2d_R, ConvTranspose2d_R, Reshape, Linear_R, Flatten
 from torch import nn, Tensor, device as Device
-from typing import Callable, List, Tuple
+from typing import Callable
 import torch as tr
 
 class VAE(nn.Module):
@@ -8,18 +8,17 @@ class VAE(nn.Module):
 		super().__init__()
 		self.reparameterize = reparameterize
 
-	def encode(self, X: Tensor) -> Tuple[Tensor, Tensor]:
+	def encode(self, X: Tensor) -> tuple[Tensor, Tensor]:
 		X = self.encoder(X)
 		return self.mu_layer(X), self.log_var_layer(X)
 
-	def forward(self, X: Tensor) -> Tensor:
+	def forward(self, X: Tensor) -> tuple[Tensor, Tensor, Tensor]:
 		mu, log_var = self.encode(X)
 		Z = self.reparameterize(mu, log_var)
 		return self.decode(Z), mu, log_var
 
 class VAE_Linear(VAE):
-	def __init__(self, reparameterize: Callable[[Tensor, Tensor], Tensor], weights: List[int], device: Device,
-				 input_dim: int = None):
+	def __init__(self, reparameterize: Callable[[Tensor, Tensor], Tensor], weights: list[int], device: Device, input_dim: int):
 		super().__init__(reparameterize)
 
 		# Probabilistic encoder
@@ -45,8 +44,8 @@ class VAE_Linear(VAE):
 		self.to(device)
 
 class VAE_Conv2d(VAE):
-	def __init__(self, reparameterize: Callable[[Tensor, Tensor], Tensor], weights: List[int], device: Device,
-				 input_shape: Tuple[int, int, int] = None, kernel_size: int = None, min_width: int = None):
+	def __init__(self, reparameterize: Callable[[Tensor, Tensor], Tensor], weights: list[int], device: Device,
+				 input_shape: tuple[int, int, int], kernel_size: int, min_width: int):
 		super().__init__(reparameterize)
 
 		# Probabilistic encoder
