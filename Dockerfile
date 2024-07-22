@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.5.0-devel-ubi9
+FROM nvidia/cuda:12.5.1-devel-ubi9
 
 RUN dnf install -y python3.12-3.12.1-4.el9 libcudnn8-8.9.7.29-1.cuda12.2 \
 	&& dnf clean all \
