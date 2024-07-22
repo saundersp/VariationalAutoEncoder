@@ -1,6 +1,7 @@
 services:
   vae:
     image: saundersp/vae
+    pull_policy: never
     build:
       args:
         UID: ${UID:-1000}
