@@ -12,7 +12,7 @@ services:
       - ./jupyter:/home/vae/jupyter
       - ./__pycache__:/home/vae/__pycache__
       - ./.ipynb_checkpoints:/home/vae/.ipynb_checkpoints
-    user: ${UID:-1000}:${GID:-1000}
+    #user: ${UID:-1000}:${GID:-1000}
     ports:
       - 8888:8888
     deploy:
@@ -20,5 +20,5 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: all
               capabilities: [gpu]
