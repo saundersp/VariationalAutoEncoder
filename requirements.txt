@@ -1,9 +1,9 @@
-jupyterlab==4.3.1
+jupyterlab==4.3.4
 torch==2.5.1
 torchvision==0.20.1
 torchsummary==1.5.1
-matplotlib==3.9.2
-tqdm==4.67.0
+matplotlib==3.10.0
+tqdm==4.67.1
 ipywidgets==8.1.5
 
 # Not mandatory but useful nonetheless
