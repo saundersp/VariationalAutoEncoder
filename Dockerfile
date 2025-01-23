@@ -1,8 +1,8 @@
-FROM nvidia/cuda:12.6.2-cudnn-devel-ubi9
+FROM nvidia/cuda:12.6.3-base-ubi9
 
-RUN dnf install -y python3.12-3.12.5-2.el9_5.1 \
+RUN dnf install -y python3.12-3.12.5-2.el9_5.2 \
 	&& dnf clean all \
-	&& ln -s /usr/bin/python3 /usr/bin/python
+	&& ln -s /usr/bin/python3.12 /usr/bin/python
 
 ARG UID=1000
 ARG GID=1000
