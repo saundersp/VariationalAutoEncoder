@@ -1,12 +1,12 @@
-jupyterlab==4.3.4
-torch==2.5.1
-torchvision==0.20.1
+jupyterlab==4.3.5
+torch==2.6.0
+torchvision==0.21.0
 torchsummary==1.5.1
 matplotlib==3.10.0
 tqdm==4.67.1
 ipywidgets==8.1.5
 
 # Not mandatory but useful nonetheless
-#jupyterlab_git==0.50.2
+#jupyterlab_git==0.51.0
 #jupyterlab-vim==4.1.4
 #pudb==2024.1.3
