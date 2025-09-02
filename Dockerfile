@@ -1,6 +1,6 @@
-FROM nvidia/cuda:12.8.0-base-ubi9
+FROM nvidia/cuda:13.0.0-base-ubi9
 
-RUN dnf install -y python3.12-3.12.5-2.el9_5.2 \
+RUN dnf install -y python3.12-3.12.9-1.el9_6.1 \
 	&& dnf clean all \
 	&& ln -s /usr/bin/python3.12 /usr/bin/python
 
