@@ -1,17 +1,17 @@
-FROM nvidia/cuda:13.0.0-base-ubi9
+FROM debian:13.1-slim
 
-RUN dnf install -y python3.12-3.12.9-1.el9_6.1 \
-	&& dnf clean all \
-	&& ln -s /usr/bin/python3.12 /usr/bin/python
+RUN apt-get update \
+	&& apt-get install -y --no-install-recommends python3.13-venv=3.13.5-2 \
+	&& ln -sv /usr/bin/python3.13 /usr/bin/python \
+	&& apt-get autoremove -y \
+	&& apt-get autoclean -y \
+	&& rm -rv /var/lib/apt/lists/*
 
 ARG UID=1000
 ARG GID=1000
 
-# $(ls -la /dev/nvidia0 | cut -d ' ' -f 4)
-ENV NVIDIA_GUID=27
-RUN groupadd -g ${NVIDIA_GUID} vglusers \
-	&& groupadd -g ${GID} vae \
-	&& useradd -m -l -g ${GID} -u ${UID} -G vglusers,vae vae
+RUN groupadd -g ${GID} vae \
+	&& useradd -m -l -g ${GID} -u ${UID} -G sudo,vae vae
 
 WORKDIR /home/vae
 
