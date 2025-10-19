@@ -9,4 +9,4 @@ ipywidgets==8.1.7
 # Not mandatory but useful nonetheless
 #jupyterlab-git==0.51.2
 #jupyterlab-vim==4.1.4
-#pudb==2025.1
+#pudb==2025.1.2
